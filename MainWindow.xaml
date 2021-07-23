@@ -1,0 +1,46 @@
+﻿<Window x:Class="WpfApp6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp6"
+         xmlns:control="clr-namespace:WpfApp6"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" >
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox  ItemsSource="{Binding Friends,UpdateSourceTrigger=PropertyChanged}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding Name}"/>
+                        <control:Stars/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Margin="5">
+                <TextBox  Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  />
+            </StackPanel>
+            <Button Command="{Binding AddCommand}" Grid.Row="2" Content="Add" Width="100" Height="50"/>
+            <StackPanel Grid.Row="6" Orientation="Horizontal">
+                <Button Command="{Binding LoadCommand}" CommandParameter="{Binding Path=SelectedMovie}" Content="Load" Width="50" Height="30" Margin="5"/>
+                <Button  Command="{Binding SaveCommand}" CommandParameter="{Binding Path=SelectedMovie}" Content="Save" Width="50" Height="30"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
